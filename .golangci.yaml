@@ -1,0 +1,64 @@
+version: "2"  # ⚙️ golangci-lint config version
+
+# ----------------------------
+# Run settings
+# ----------------------------
+run:
+  modules-download-mode: readonly  # 👆 Only use existing modules
+
+# ----------------------------
+# Linters configuration
+# ----------------------------
+linters:
+  default: none  # ❌ Disable all linters by default
+  enable:
+    - bodyclose           # 🔒 Ensure HTTP response bodies are closed
+    - dupl                # 🔁 Detect duplicate code
+    - errcheck            # ⚠️ Check for unchecked errors
+    - forcetypeassert     # 🛡 Ensure type assertions are correct
+    - funlen              # 📏 Check function length
+    - gocognit            # 🧠 Measure cognitive complexity
+    - goconst             # 🔣 Detect repeated constants
+    - gocritic            # 🕵️‍♂️ Advanced static checks
+    - gocyclo             # 🌀 Check cyclomatic complexity
+    - goprintffuncname    # 🖨 Warn about fmt.Printf misuse
+    - gosec               # 🔐 Security checks
+    - govet               # 👀 Detect suspicious constructs
+    - ineffassign         # ❌ Detect ineffectual assignments
+    - misspell            # ✍️ Detect common misspellings
+    - mnd                 # 📌 Magic numbers detection
+    - noctx               # ⏱ Ensure context is used where appropriate
+    - nolintlint          # 📝 Checks `//nolint` usage
+    - rowserrcheck        # 🏷 Check for error handling in rows
+    - sqlclosecheck       # 💾 Ensure SQL rows/stmt are closed
+    - staticcheck         # 🔍 Advanced static analysis
+    - thelper             # 🛠 Test helper function conventions
+    - tparallel           # 🏃‍♂️ Test parallelization checks
+    - unconvert           # 🔄 Detect unnecessary type conversions
+    - unparam             # ❌ Detect unused function parameters
+    - unused              # ❌ Detect unused variables, constants, functions
+    - whitespace          # 🔲 Check whitespace issues
+
+  # ----------------------------
+  # Per-linter settings
+  # ----------------------------
+  settings:
+    funlen:
+      lines: 80             # 📏 Max lines per function
+      statements: 80        # 🧩 Max statements per function
+      ignore-comments: true # 💬 Ignore comments when counting
+    gocyclo:
+      min-complexity: 15    # 🌀 Only report functions with complexity >= 15
+    misspell:
+      locale: US             # 🇺🇸 Use US English dictionary
+    nolintlint:
+      require-explanation: true  # 📝 All //nolint must have explanation
+      require-specific: false    # ❌ Explanation can be generic
+      allow-unused: false        # ❌ Do not allow unused nolints
+
+# ----------------------------
+# Issues limits
+# ----------------------------
+issues:
+  max-issues-per-linter: 0  # ❌ No limit per linter (report all)
+  max-same-issues: 0        # ❌ No limit on repeated issues
